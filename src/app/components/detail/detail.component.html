@@ -1,0 +1,58 @@
+<div [ngClass]="{'overlay': !loaded}" class="py-4">
+
+
+  <mat-spinner *ngIf="!loaded" class="loader"></mat-spinner>
+
+  <div class="container">
+
+    <div class="d-flex align-items-center flex-wrap">
+      <button mat-icon-button color="primary" matTooltip="Back" (click)="onBack()">
+        <mat-icon>keyboard_return</mat-icon>
+      </button>
+      <h2 class="mat-h2 mb-0">
+        Superhero {{id}}
+      </h2>
+    </div>
+
+
+    <div class="alert alert-danger mb-2" *ngIf="error">{{error}}</div>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <mat-icon mat-list-icon class="text-black-50">emoji_people</mat-icon>
+        <div mat-line>
+          <span class="fw-bold">Superhero: </span>
+          {{superhero?.superhero}}
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon mat-list-icon class="text-black-50">hotel_class</mat-icon>
+        <div mat-line>
+          <span class="fw-bold">Publisher: </span>
+          {{superhero?.publisher}}
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon mat-list-icon class="text-black-50">face</mat-icon>
+        <div mat-line>
+          <span class="fw-bold">Alter Ego: </span>
+          {{superhero?.alter_ego}}
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon mat-list-icon class="text-black-50">chrome_reader_mode</mat-icon>
+        <div mat-line>
+          <span class="fw-bold">First Appearance: </span>
+          {{superhero?.first_appearance}}
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon mat-list-icon class="text-black-50">flutter_dash</mat-icon>
+        <div mat-line>
+          <span class="fw-bold">Characters: </span>
+          {{superhero?.characters}}
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

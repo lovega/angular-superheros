@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Superhero {{this.data.superhero ? this.data.superhero.id : ''}}</h2>
+<mat-dialog-content [ngClass]="{'overlay': loading}">
+
+  <mat-spinner diameter="40" *ngIf="loading" class="loader"></mat-spinner>
+
+
+  <div *ngIf="this.data.action === 'delete'; else formT" class="alert alert-warning" role="alert">
+    <p class="fs-5 mb-0">Are you sure to delete Superhero {{this.data.superhero ? this.data.superhero.id : ''}}?</p>
+  </div>
+  <ng-template #formT>
+    <form [formGroup]="form" class="px-md-2">
+      <div class="row">
+        <div class="col-sm-4 pb-2">
+          <mat-form-field appearance="legacy">
+            <mat-label>Superhero</mat-label>
+            <input matInput formControlName="superhero" placeholder="Superhero">
+            <mat-error *ngIf="form.get('superhero')?.hasError('required')">
+              Superhero is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4 pb-2">
+          <mat-form-field appearance="legacy">
+            <mat-label>Publisher</mat-label>
+            <input matInput formControlName="publisher" placeholder="Publisher">
+            <mat-error *ngIf="form.get('publisher')?.hasError('required')">
+              Publisher is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4 pb-2">
+          <mat-form-field appearance="legacy">
+            <mat-label>Alter Ego</mat-label>
+            <input matInput formControlName="alter_ego" placeholder="Alter Ego">
+            <mat-error *ngIf="form.get('alter_ego')?.hasError('required')">
+              Alter Ego is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 pb-2">
+          <mat-form-field appearance="legacy">
+            <mat-label>First Appearance</mat-label>
+            <input matInput formControlName="first_appearance" placeholder="First Appearance">
+            <mat-error *ngIf="form.get('first_appearance')?.hasError('required')">
+              First Appearance is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4 pb-2">
+          <mat-form-field appearance="legacy">
+            <mat-label>Characters</mat-label>
+            <input matInput formControlName="characters" placeholder="characters">
+            <mat-error *ngIf="form.get('characters')?.hasError('required')">
+              Characters is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="d-flex align-items-center justify-content-between w-100 py-2">
+    <button mat-button mat-dialog-close mat-flat-button color="primary" class="ml-3">
+      Cancel
+    </button>
+    <button mat-flat-button color="primary" [disabled]="getFormErrors()" (click)="onSubmit()">
+      {{data.action | titlecase }}
+    </button>
+  </div>
+</mat-dialog-actions>
