@@ -29,7 +29,10 @@ export class DetailComponent implements OnInit {
         }
         this.loaded = true;
       },
-      error => (this.error = 'An error has occurred')
+      error => {
+        this.error = 'An error has occurred';
+        this.loaded = true;
+      }
     );
   }
 

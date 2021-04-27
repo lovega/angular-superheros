@@ -66,7 +66,7 @@ export class ListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       let err = '';
-      let data = this.superheros.data;
+      let data = this.superheros.data ? this.superheros.data : [];
       if (action === 'delete') {
         data = data.filter((s: Superhero) => s?.id !== result?.id);
         err = `Superhero ${el?.id} could not be delete`;

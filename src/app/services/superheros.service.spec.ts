@@ -1,6 +1,6 @@
 import { Superhero } from './../models/superhero';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { SuperherosService } from './superheros.service';
 
 describe('SuperherosService', () => {
@@ -60,6 +60,15 @@ describe('SuperherosService', () => {
     httpClientSpy.delete.and.returnValue(of(superhero));
     service
       .deleteSuperhero(1)
+      .subscribe(heroes => expect(heroes).not.toBeNull(), fail);
+  });
+
+  it('getSuperheros should return error from observable', async () => {
+    httpClientSpy.get.and
+      .returnValue(throwError({ status: 500 }))
+      .and.returnValue(throwError({ status: 500 }));
+    service
+      .getSuperheros()
       .subscribe(heroes => expect(heroes).not.toBeNull(), fail);
   });
 });

@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { action: string; superhero: Superhero },
+    public data: { action: string; superhero?: Superhero },
     private superherosService: SuperherosService
   ) {}
 
@@ -58,7 +58,10 @@ export class DialogComponent implements OnInit {
         this.dialogRef.close({ id: this.data.superhero?.id });
         this.loading = false;
       },
-      error => this.dialogRef.close(0)
+      error => {
+        this.dialogRef.close(0);
+        this.loading = false;
+      }
     );
   }
 
@@ -69,7 +72,10 @@ export class DialogComponent implements OnInit {
         this.dialogRef.close(res);
         this.loading = false;
       },
-      error => this.dialogRef.close(0)
+      error => {
+        this.dialogRef.close(0);
+        this.loading = false;
+      }
     );
   }
 
@@ -82,7 +88,10 @@ export class DialogComponent implements OnInit {
           this.dialogRef.close(res);
           this.loading = false;
         },
-        error => this.dialogRef.close(0)
+        error => {
+          this.dialogRef.close(0);
+          this.loading = false;
+        }
       );
   }
 
